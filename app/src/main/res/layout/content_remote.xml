@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.arunans23.smartremotecontroller.RemoteActivity"
+    tools:context="com.example.arunans23.smartremotecontroller.activities.RemoteActivity"
     tools:showIn="@layout/activity_remote">
 
 </android.support.constraint.ConstraintLayout>
