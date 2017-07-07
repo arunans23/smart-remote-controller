@@ -15,7 +15,7 @@ import com.example.arunans23.smartremotecontroller.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button checkRemoteButton;
+    private Button mCheckRemoteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        checkRemoteButton = (Button)findViewById(R.id.remoteOpenButton);
+        mCheckRemoteButton = (Button)findViewById(R.id.remoteOpenButton);
 
-        checkRemoteButton.setOnClickListener(new View.OnClickListener() {
+        mCheckRemoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, RemoteActivity.class);
