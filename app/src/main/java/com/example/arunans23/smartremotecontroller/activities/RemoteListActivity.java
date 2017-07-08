@@ -9,12 +9,12 @@ import android.view.View;
 
 import com.example.arunans23.smartremotecontroller.R;
 
-public class RemoteActivity extends AppCompatActivity {
+public class RemoteListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_remote);
+        setContentView(R.layout.activity_remote_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
