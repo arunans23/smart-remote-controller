@@ -1,21 +1,37 @@
 package com.example.arunans23.smartremotecontroller.activities;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothServerSocket;
+import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.example.arunans23.smartremotecontroller.R;
+
+import java.io.IOException;
+import java.util.Set;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button mCheckRemoteButton;
+    private BluetoothAdapter mBluetoothAdapter;
+
+    private final int REQUEST_ENABLE_BT = 1;
+    private final String TAG = "MAIN_ACTIVITY";
+    private static final String NAME = "HC-06";
+    private static final UUID MY_UUID = UUID.fromString("");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +58,28 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        this.mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter == null){
+            Toast.makeText(this, "This device does not support bluetooth", Toast.LENGTH_LONG).show();
+            finish();
+        }
+
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
+
+        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+
+        if (pairedDevices.size() > 0) {
+            // There are paired devices. Get the name and address of each paired device.
+            for (BluetoothDevice device : pairedDevices) {
+                String deviceName = device.getName();
+                String deviceHardwareAddress = device.getAddress(); // MAC address
+                Log.i("BLUETOOTH_DEVICE", deviceName+" "+deviceHardwareAddress);
+            }
+        }
     }
 
     @Override
@@ -65,4 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    
 }
