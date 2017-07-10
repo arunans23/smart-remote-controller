@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private final int REQUEST_ENABLE_BT = 1;
     private final String TAG = "MAIN_ACTIVITY";
     private static final String NAME = "HC-06";
-    private static final UUID MY_UUID = UUID.fromString("");
+    private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         mCheckRemoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, RemoteListActivity.class);
+                Intent i = new Intent(MainActivity.this, RemoteActivity.class);
                 startActivity(i);
             }
         });
@@ -104,5 +104,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    
+
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.arunans23.smartremotecontroller.activities.RemoteActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="307dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="196dp">
+        <Button
+            android:id="@+id/writeButton"
+            android:onClick="writeButtonPressed"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="On"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="301dp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="connectButtonPressed"
+            android:text="OFF"
+            tools:layout_editor_absoluteX="225dp"
+            tools:layout_editor_absoluteY="301dp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="disconnectButtonPressed"
+            android:text="OFF"
+            tools:layout_editor_absoluteX="225dp"
+            tools:layout_editor_absoluteY="301dp" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
