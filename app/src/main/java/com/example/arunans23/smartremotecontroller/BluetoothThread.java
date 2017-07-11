@@ -11,6 +11,7 @@ import android.bluetooth.BluetoothSocket;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 
@@ -81,9 +82,14 @@ public class BluetoothThread extends Thread {
 
         // Get this device's Bluetooth adapter
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+
+
         if ((adapter == null) || (!adapter.isEnabled())){
             throw new Exception("Bluetooth adapter not found or not enabled!");
         }
+
+
+
 
         // Find the remote device
         BluetoothDevice remoteDevice = adapter.getRemoteDevice(address);
@@ -215,7 +221,11 @@ public class BluetoothThread extends Thread {
             sendToReadHandler("CONNECTED");
         } catch (Exception e) {
             Log.e(TAG, "Failed to connect!", e);
-            sendToReadHandler("CONNECTION FAILED");
+            if (e.getMessage().equals("Bluetooth adapter not found or not enabled!")){
+                sendToReadHandler("ADAPTER 404");
+            } else {
+                sendToReadHandler("CONNECTION FAILED");
+            }
             disconnect();
             return;
         }

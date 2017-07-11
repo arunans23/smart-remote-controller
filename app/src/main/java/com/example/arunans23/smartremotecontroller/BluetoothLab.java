@@ -12,6 +12,7 @@ import android.widget.Toast;
  * Created by arunans23 on 7/8/17.
  */
 
+//This class is for now not needed.  Have to clean up in the end
 public class BluetoothLab {
     private static BluetoothLab mBluetoothLab;
     private BluetoothAdapter mBluetoothAdapter;

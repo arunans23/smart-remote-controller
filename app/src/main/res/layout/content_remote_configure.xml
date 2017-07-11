@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.arunans23.smartremotecontroller.activities.RemoteConfigureActivity"
+    tools:showIn="@layout/activity_remote_configure">
+
+
+
+    <LinearLayout
+    android:layout_width="368dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="50dp">
+
+
+        <TextView
+            android:id="@+id/enterRemoteName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RemoteName" />
+
+        <EditText
+            android:id="@+id/remoteNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <Button
+            android:id="@+id/configurePowerButton"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Power"
+         />
+
+        <Button
+            android:id="@+id/configureChannelUpButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Channel UP"
+        />
+
+        <Button
+            android:id="@+id/configureChannelDownButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Channel DOWN"
+            />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:layout_marginTop="30dp"
+            />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

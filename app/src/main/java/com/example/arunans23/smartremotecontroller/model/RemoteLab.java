@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class RemoteLab {
     private static RemoteLab sRemoteLab;
-    private List<Remote> mRemotes;
+    private ArrayList<Remote> mRemotes;
 
     public static RemoteLab get(Context context){
         if (sRemoteLab==null){
@@ -22,11 +22,29 @@ public class RemoteLab {
     }
 
     private RemoteLab(Context context){
-        
+        this.mRemotes = new ArrayList<Remote>();
     }
 
+    public void addRemote(Remote remote){
+        this.mRemotes.add(remote);
+    }
+
+    public Remote getRemote(String remoteID){
+        for (Remote r: mRemotes){
+            if (r.getRemoteID().equals(remoteID)){
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Remote> getRemotes(){
+        return this.mRemotes;
+    }
+
+    //generate dummy remote list to populate dummy data
     public List<Remote> getDummyRemoteList(){
-        this.mRemotes = new ArrayList<Remote>();
+
         for (int i = 0; i < 30; i++){
             this.mRemotes.add(new Remote(UUID.randomUUID().toString(), "remote " + i, null));
         }

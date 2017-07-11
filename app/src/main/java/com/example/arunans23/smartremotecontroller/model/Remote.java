@@ -1,6 +1,7 @@
 package com.example.arunans23.smartremotecontroller.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -12,7 +13,7 @@ public class Remote {
     private String mRemoteBrand;
     private ArrayList<RemoteKey> mRemoteKeys;
 
-    public Remote(String remoteBrand){
+    public Remote(String remoteBrand, ArrayList<RemoteKey> remoteKeys){
         this.mRemoteID = UUID.randomUUID().toString();
         this.mRemoteBrand = remoteBrand;
         this.mRemoteKeys = new ArrayList<RemoteKey>();

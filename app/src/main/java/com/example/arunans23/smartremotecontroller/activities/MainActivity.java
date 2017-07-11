@@ -2,11 +2,7 @@ package com.example.arunans23.smartremotecontroller.activities;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothServerSocket;
-import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.arunans23.smartremotecontroller.R;
 
-import java.io.IOException;
 import java.util.Set;
 import java.util.UUID;
 
@@ -55,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
         mRemoteDisconnectButton = (Button)findViewById(R.id.bluetoothDisconnect);
 
         mRemoteDisconnectButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        mRemoteButton = (Button)findViewById(R.id.remoteButton);
+
+        mRemoteButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
 

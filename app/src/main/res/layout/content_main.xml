@@ -31,6 +31,13 @@
             android:text="Disconnect"
             android:layout_marginTop="20dip" />
 
+        <Button
+            android:id="@+id/remoteButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Remote"
+            android:layout_marginTop="20dip" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

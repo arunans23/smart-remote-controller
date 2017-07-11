@@ -111,5 +111,12 @@ public class RemoteListActivityFragment extends Fragment {
             mRemotes = remotes;
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        updateUI();
+    }
 }
 

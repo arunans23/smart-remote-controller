@@ -9,16 +9,18 @@ import java.util.UUID;
 public class RemoteKey {
     private String mRemoteKeyID;
     private String mRemoteKeyName;
-    private int[] mRemoteKeyValues;
+    private String mRemoteKeyValue;
 
-    public RemoteKey(String keyName, int[] keyValues){
+    public RemoteKey(String keyName, String keyValue){
         this.mRemoteKeyID = UUID.randomUUID().toString();
+        this.mRemoteKeyName = keyName;
+        this.mRemoteKeyValue = keyValue;
     }
 
-    public RemoteKey(String remoteKeyID, String remoteKeyName, int[] keyValues){
+    public RemoteKey(String remoteKeyID, String remoteKeyName, String keyValue){
         this.mRemoteKeyID = remoteKeyID;
         this.mRemoteKeyName = remoteKeyName;
-        this.mRemoteKeyValues = keyValues;
+        this.mRemoteKeyValue = keyValue;
     }
 
     public String getRemoteKeyID() {
@@ -29,7 +31,7 @@ public class RemoteKey {
         return mRemoteKeyName;
     }
 
-    public int[] getRemoteKeyValues() {
-        return mRemoteKeyValues;
+    public String getRemoteKeyValues() {
+        return mRemoteKeyValue;
     }
 }

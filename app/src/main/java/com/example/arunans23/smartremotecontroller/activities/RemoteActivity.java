@@ -1,15 +1,17 @@
 package com.example.arunans23.smartremotecontroller.activities;
 
+import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import android.util.Log;
 import android.widget.Toast;
@@ -17,11 +19,19 @@ import android.widget.Toast;
 import com.example.arunans23.smartremotecontroller.BluetoothThread;
 import com.example.arunans23.smartremotecontroller.R;
 import com.example.arunans23.smartremotecontroller.model.Remote;
+import com.example.arunans23.smartremotecontroller.model.RemoteKey;
+import com.example.arunans23.smartremotecontroller.model.RemoteLab;
+
+import java.util.ArrayList;
 
 public class RemoteActivity extends AppCompatActivity {
 
     // Tag for logging
     private static final String TAG = "RemoteActivity";
+    private final int REQUEST_ENABLE_BT = 1;
+
+    //bundle argument name for remote acitivity intent
+    private static final String EXTRA_REMOTE_ID = "com.example.arunans23.smartremotecontroller.remoteid";
 
     // MAC address of remote Bluetooth device
     // Replace this with the address of your own module
@@ -33,39 +43,83 @@ public class RemoteActivity extends AppCompatActivity {
     // Handler for writing messages to the Bluetooth connection
     Handler writeHandler;
 
-    private Button onButton;
-    private Button offButton;
+    private Button powerButton;
+    private Button channelUpButton;
+    private Button channelDownButton;
 
+    private ArrayList<Remote> mRemotes;
     private Remote mRemote;
+
+    public static Intent newIntent(Context packageContext, String remoteID){
+        Intent intent = new Intent(packageContext, RemoteActivity.class);
+        intent.putExtra(EXTRA_REMOTE_ID, remoteID);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remote);
 
+        String remoteID = (String) getIntent()
+                .getSerializableExtra(EXTRA_REMOTE_ID);
 
-        onButton = (Button) findViewById(R.id.onButton);
-        onButton.setOnClickListener(new View.OnClickListener(){
+        mRemotes = RemoteLab.get(getApplicationContext()).getRemotes();
+
+        for (Remote remote: mRemotes){
+            if (remote.getRemoteID().equals(remoteID)){
+                this.mRemote = remote;
+            }
+        }
+
+        powerButton = (Button) findViewById(R.id.powerButton);
+        powerButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                writeData("");
+                String data = "";
+                for (RemoteKey rk: mRemote.getRemoteKeys()){
+                    if (rk.getRemoteKeyName().equals(((Button)findViewById(R.id.configurePowerButton)).getText().toString())){
+                        data = rk.getRemoteKeyValues();
+                    }
+                }
+                writeData(data);
             }
         });
-        offButton = (Button) findViewById(R.id.offButton);
-        offButton.setOnClickListener(new View.OnClickListener(){
+
+        channelUpButton = (Button) findViewById(R.id.channelUpButton);
+        channelUpButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                writeData("");
+                String data = "";
+                for (RemoteKey rk: mRemote.getRemoteKeys()){
+                    if (rk.getRemoteKeyName().equals(((Button)findViewById(R.id.configureChannelUpButton)).getText().toString())){
+                        data = rk.getRemoteKeyValues();
+                    }
+                }
+                writeData(data);
             }
         });
-        connectButtonPressed();
+        channelDownButton = (Button) findViewById(R.id.channelDownButton);
+        channelDownButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                String data = "";
+                for (RemoteKey rk: mRemote.getRemoteKeys()){
+                    if (rk.getRemoteKeyName().equals(((Button)findViewById(R.id.configureChannelDownButton)).getText().toString())){
+                        data = rk.getRemoteKeyValues();
+                    }
+                }
+                writeData(data);
+            }
+        });
+        connectBluetooth();
     }
 
     /**
      * Launch the Bluetooth thread.
      */
-    public void connectButtonPressed() {
-        Log.v(TAG, "Connect button pressed.");
+    public void connectBluetooth() {
+        Log.v(TAG, "Bluetooth connected...");
 
         // Only one thread at a time
         if (btt != null) {
@@ -90,7 +144,12 @@ public class RemoteActivity extends AppCompatActivity {
                     Toast.makeText(RemoteActivity.this, "Disconnected", Toast.LENGTH_SHORT).show();
 
                 } else if (s.equals("CONNECTION FAILED")) {
-                    Toast.makeText(RemoteActivity.this, "Connection failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RemoteActivity.this, "Connection failed", Toast.LENGTH_LONG).show();
+
+                } else if (s.equals("ADAPTER 404")){
+                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+
                 } else {
 
                 }
@@ -108,8 +167,8 @@ public class RemoteActivity extends AppCompatActivity {
     /**
      * Kill the Bluetooth thread.
      */
-    public void disconnectButtonPressed(View v) {
-        Log.v(TAG, "Disconnect button pressed.");
+    public void disconnectBluetooth() {
+        Log.v(TAG, "Bluetooth Disconnected...");
 
         if(btt != null) {
             btt.interrupt();
@@ -135,9 +194,13 @@ public class RemoteActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        if(btt != null) {
-            btt.interrupt();
-            btt = null;
-        }
+        disconnectBluetooth();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        connectBluetooth();
     }
 }
