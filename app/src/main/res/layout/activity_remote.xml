@@ -15,8 +15,7 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="196dp">
         <Button
-            android:id="@+id/writeButton"
-            android:onClick="writeButtonPressed"
+            android:id="@+id/onButton"
             android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,20 +23,11 @@
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="301dp" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="connectButtonPressed"
-            android:text="OFF"
-            tools:layout_editor_absoluteX="225dp"
-            tools:layout_editor_absoluteY="301dp" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/offButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="disconnectButtonPressed"
             android:text="OFF"
             tools:layout_editor_absoluteX="225dp"
             tools:layout_editor_absoluteY="301dp" />

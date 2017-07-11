@@ -12,20 +12,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.arunans23.smartremotecontroller.BluetoothThread;
 import com.example.arunans23.smartremotecontroller.R;
+import com.example.arunans23.smartremotecontroller.model.Remote;
 
 public class RemoteActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_remote);
-    }
-
     // Tag for logging
-    private static final String TAG = "BluetoothActivity";
+    private static final String TAG = "RemoteActivity";
 
     // MAC address of remote Bluetooth device
     // Replace this with the address of your own module
@@ -37,10 +33,38 @@ public class RemoteActivity extends AppCompatActivity {
     // Handler for writing messages to the Bluetooth connection
     Handler writeHandler;
 
+    private Button onButton;
+    private Button offButton;
+
+    private Remote mRemote;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_remote);
+
+
+        onButton = (Button) findViewById(R.id.onButton);
+        onButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                writeData("");
+            }
+        });
+        offButton = (Button) findViewById(R.id.offButton);
+        offButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                writeData("");
+            }
+        });
+        connectButtonPressed();
+    }
+
     /**
      * Launch the Bluetooth thread.
      */
-    public void connectButtonPressed(View v) {
+    public void connectButtonPressed() {
         Log.v(TAG, "Connect button pressed.");
 
         // Only one thread at a time
@@ -60,22 +84,15 @@ public class RemoteActivity extends AppCompatActivity {
 
                 // Do something with the message
                 if (s.equals("CONNECTED")) {
-//                    TextView tv = (TextView) findViewById(R.id.statusText);
-//                    tv.setText("Connected.");
-//                    Button b = (Button) findViewById(R.id.writeButton);
-//                    b.setEnabled(true);
+                    Toast.makeText(RemoteActivity.this, "Connection stable", Toast.LENGTH_SHORT).show();
+
                 } else if (s.equals("DISCONNECTED")) {
-//                    TextView tv = (TextView) findViewById(R.id.statusText);
-//                    Button b = (Button) findViewById(R.id.writeButton);
-//                    b.setEnabled(false);
-//                    tv.setText("Disconnected.");
+                    Toast.makeText(RemoteActivity.this, "Disconnected", Toast.LENGTH_SHORT).show();
+
                 } else if (s.equals("CONNECTION FAILED")) {
-//                    TextView tv = (TextView) findViewById(R.id.statusText);
-//                    tv.setText("Connection failed!");
-//                    btt = null;
+                    Toast.makeText(RemoteActivity.this, "Connection failed", Toast.LENGTH_SHORT).show();
                 } else {
-//                    TextView tv = (TextView) findViewById(R.id.readField);
-//                    tv.setText(s);
+
                 }
             }
         });
@@ -86,8 +103,6 @@ public class RemoteActivity extends AppCompatActivity {
         // Run the thread
         btt.start();
 
-//        TextView tv = (TextView) findViewById(R.id.statusText);
-//        tv.setText("Connecting...");
     }
 
     /**
@@ -105,12 +120,8 @@ public class RemoteActivity extends AppCompatActivity {
     /**
      * Send a message using the Bluetooth thread's write handler.
      */
-    public void writeButtonPressed(View v) {
-        Log.v(TAG, "Write button pressed.");
-
-        //TextView tv = (TextView)findViewById(R.id.writeField);
-        //String data = tv.getText().toString();
-        String data = "A90";
+    public void writeData(String data) {
+        Log.v(TAG, "Data passed" + data);
 
         Message msg = Message.obtain();
         msg.obj = data;

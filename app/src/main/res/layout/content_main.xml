@@ -9,25 +9,28 @@
     tools:showIn="@layout/activity_main">
 
     <LinearLayout
-        android:layout_width="159dp"
+        android:layout_width="fill_parent"
         android:layout_height="316dp"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="62dp">
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="100dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp">
 
         <Button
-            android:id="@+id/remoteOpenButton"
+            android:id="@+id/bluetoothConnect"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Check"
+            android:text="Connect"
             android:layout_marginTop="20dip" />
 
-        <TextView
-            android:id="@+id/textView"
+        <Button
+            android:id="@+id/bluetoothDisconnect"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:text="Disconnect"
             android:layout_marginTop="20dip" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

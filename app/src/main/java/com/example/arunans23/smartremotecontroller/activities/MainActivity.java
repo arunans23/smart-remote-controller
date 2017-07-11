@@ -25,7 +25,9 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button mCheckRemoteButton;
+    private Button mRemoteConnectButton;
+    private Button mRemoteDisconnectButton;
+    private Button mRemoteButton;
     private BluetoothAdapter mBluetoothAdapter;
 
     private final int REQUEST_ENABLE_BT = 1;
@@ -40,22 +42,22 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        mRemoteConnectButton = (Button)findViewById(R.id.bluetoothConnect);
 
-        mCheckRemoteButton = (Button)findViewById(R.id.remoteOpenButton);
-
-        mCheckRemoteButton.setOnClickListener(new View.OnClickListener() {
+        mRemoteConnectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, RemoteActivity.class);
                 startActivity(i);
+            }
+        });
+
+        mRemoteDisconnectButton = (Button)findViewById(R.id.bluetoothDisconnect);
+
+        mRemoteDisconnectButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
