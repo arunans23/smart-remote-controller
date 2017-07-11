@@ -11,7 +11,6 @@ import android.bluetooth.BluetoothSocket;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 

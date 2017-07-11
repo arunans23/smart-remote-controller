@@ -22,7 +22,6 @@ import com.example.arunans23.smartremotecontroller.model.RemoteKey;
 import com.example.arunans23.smartremotecontroller.model.RemoteLab;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RemoteConfigureActivity extends AppCompatActivity {
 
