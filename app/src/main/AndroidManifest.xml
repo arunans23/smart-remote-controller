@@ -26,6 +26,10 @@
             android:name=".activities.RemoteConfigureActivity"
             android:label="@string/title_activity_remote_configure"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activities.RemoteActivity"
+            android:label="@string/title_activity_remote"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

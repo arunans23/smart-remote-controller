@@ -248,8 +248,11 @@ public class RemoteConfigureActivity extends AppCompatActivity {
 
     //method to invoke after receiving configuration data
     private void receiveConfigureDetails(String data){
-        this.mCurrentButton.setEnabled(false);
+        if (this.mCurrentButton != null){
+            this.mCurrentButton.setEnabled(false);
+        }
         this.mRemoteKeys.add(new RemoteKey(mCurrentButton.getText().toString(), data));
+        Log.i(TAG, mCurrentButton.getText().toString() + " " + data);
         hideProgressDialog();
     }
 }

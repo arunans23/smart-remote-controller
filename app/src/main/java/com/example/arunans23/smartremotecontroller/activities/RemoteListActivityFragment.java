@@ -1,5 +1,6 @@
 package com.example.arunans23.smartremotecontroller.activities;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -77,7 +78,8 @@ public class RemoteListActivityFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-
+            Intent intent = RemoteActivity.newIntent(getActivity(), this.mRemote.getRemoteID());
+            startActivity(intent);
         }
     }
 
