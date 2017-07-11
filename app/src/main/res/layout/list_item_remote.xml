@@ -7,10 +7,11 @@
 
     <TextView android:id="@+id/list_item_remote_brand_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:textStyle="bold"
-        android:padding="4dp"
-        tools:text="Disease Title"
+        android:padding="10dp"
+        tools:text="Remote Title"
+        android:textSize="18dp"
         />
 
 

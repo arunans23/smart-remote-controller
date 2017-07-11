@@ -111,7 +111,7 @@ public class RemoteConfigureActivity extends AppCompatActivity {
                 if ((mRemoteKeys.size() == 3) && !mRemoteNameEdittext.getText().toString().equals("")){
                     sRemoteLab.addRemote(new Remote(mRemoteNameEdittext.getText().toString(), mRemoteKeys));
                     finish();
-                } else if (!mRemoteNameEdittext.getText().toString().equals("")){
+                } else if (mRemoteNameEdittext.getText().toString().equals("")){
                     Snackbar.make(view, "Fill in the remote name", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {

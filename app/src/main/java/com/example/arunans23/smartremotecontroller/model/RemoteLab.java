@@ -44,7 +44,7 @@ public class RemoteLab {
 
     //generate dummy remote list to populate dummy data
     public List<Remote> getDummyRemoteList(){
-
+        mRemotes = new ArrayList<Remote>();
         for (int i = 0; i < 30; i++){
             this.mRemotes.add(new Remote(UUID.randomUUID().toString(), "remote " + i, null));
         }

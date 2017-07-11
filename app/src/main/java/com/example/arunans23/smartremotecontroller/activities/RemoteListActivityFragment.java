@@ -47,9 +47,8 @@ public class RemoteListActivityFragment extends Fragment {
 
     private void updateUI(){
 
-        mRemoteLab = RemoteLab.get(getActivity());
-
-        List<Remote> remotes = mRemoteLab.getDummyRemoteList();
+        //List<Remote> remotes = this.mRemoteLab.getDummyRemoteList();
+        List<Remote> remotes = this.mRemoteLab.getRemotes();
 
         if (mAdapter == null){
             mAdapter = new RemoteAdapter(remotes);

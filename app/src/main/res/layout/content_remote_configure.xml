@@ -21,7 +21,7 @@
             android:id="@+id/enterRemoteName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RemoteName" />
+            android:text="Remote Name" />
 
         <EditText
             android:id="@+id/remoteNameEditText"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:text="Remote" />
 
         <Button
             android:id="@+id/configurePowerButton"
