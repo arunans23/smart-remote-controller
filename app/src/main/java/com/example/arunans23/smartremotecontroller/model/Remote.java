@@ -16,7 +16,7 @@ public class Remote {
     public Remote(String remoteBrand, ArrayList<RemoteKey> remoteKeys){
         this.mRemoteID = UUID.randomUUID().toString();
         this.mRemoteBrand = remoteBrand;
-        this.mRemoteKeys = new ArrayList<RemoteKey>();
+        this.mRemoteKeys = remoteKeys;
     }
 
     public Remote(String remoteID, String remoteBrand, ArrayList<RemoteKey> remoteKeys){
@@ -34,6 +34,6 @@ public class Remote {
     }
 
     public ArrayList<RemoteKey> getRemoteKeys() {
-        return mRemoteKeys;
+        return this.mRemoteKeys;
     }
 }

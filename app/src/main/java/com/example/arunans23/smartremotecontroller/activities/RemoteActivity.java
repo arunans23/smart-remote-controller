@@ -62,7 +62,6 @@ public class RemoteActivity extends AppCompatActivity {
 
         String remoteID = (String) getIntent()
                 .getSerializableExtra(EXTRA_REMOTE_ID);
-
         mRemotes = RemoteLab.get(getApplicationContext()).getRemotes();
 
         for (Remote remote: mRemotes){
@@ -76,8 +75,10 @@ public class RemoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String data = "";
-                for (RemoteKey rk: mRemote.getRemoteKeys()){
-                    if (rk.getRemoteKeyName().equals(((Button)findViewById(R.id.configurePowerButton)).getText().toString())){
+                ArrayList<RemoteKey> mRemoteKeys = mRemote.getRemoteKeys();
+                for (RemoteKey rk: mRemoteKeys){
+                    if (rk.getRemoteKeyName().equals("Power"))
+                    {
                         data = rk.getRemoteKeyValues();
                     }
                 }
@@ -91,7 +92,7 @@ public class RemoteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String data = "";
                 for (RemoteKey rk: mRemote.getRemoteKeys()){
-                    if (rk.getRemoteKeyName().equals(((Button)findViewById(R.id.configureChannelUpButton)).getText().toString())){
+                    if (rk.getRemoteKeyName().equals("Channel UP")){
                         data = rk.getRemoteKeyValues();
                     }
                 }
@@ -104,7 +105,7 @@ public class RemoteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String data = "";
                 for (RemoteKey rk: mRemote.getRemoteKeys()){
-                    if (rk.getRemoteKeyName().equals(((Button)findViewById(R.id.configureChannelDownButton)).getText().toString())){
+                    if (rk.getRemoteKeyName().equals("Channel DOWN")){
                         data = rk.getRemoteKeyValues();
                     }
                 }

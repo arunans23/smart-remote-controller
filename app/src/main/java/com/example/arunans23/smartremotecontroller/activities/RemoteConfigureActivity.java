@@ -252,6 +252,8 @@ public class RemoteConfigureActivity extends AppCompatActivity {
         }
         this.mRemoteKeys.add(new RemoteKey(mCurrentButton.getText().toString(), data));
         Log.i(TAG, mCurrentButton.getText().toString() + " " + data);
+        Log.i(TAG, mCurrentButton.getText().toString());
+        Log.i(TAG, mRemoteKeys.get(0).getRemoteKeyValues());
         hideProgressDialog();
     }
 }
