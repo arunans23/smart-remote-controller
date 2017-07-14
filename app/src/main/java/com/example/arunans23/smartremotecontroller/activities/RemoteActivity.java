@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.arunans23.smartremotecontroller.BluetoothThread;
@@ -42,6 +43,8 @@ public class RemoteActivity extends AppCompatActivity {
     // Handler for writing messages to the Bluetooth connection
     Handler writeHandler;
 
+    private TextView mRemoteNameTextView;
+
     private Button powerButton;
     private Button channelUpButton;
     private Button channelDownButton;
@@ -69,6 +72,9 @@ public class RemoteActivity extends AppCompatActivity {
                 this.mRemote = remote;
             }
         }
+
+        mRemoteNameTextView = (TextView)findViewById(R.id.remoteNameTextView);
+        mRemoteNameTextView.setText(this.mRemote.getRemoteBrand());
 
         powerButton = (Button) findViewById(R.id.powerButton);
         powerButton.setOnClickListener(new View.OnClickListener(){

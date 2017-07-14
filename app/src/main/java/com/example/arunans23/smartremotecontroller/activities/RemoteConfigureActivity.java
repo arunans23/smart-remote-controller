@@ -32,10 +32,10 @@ public class RemoteConfigureActivity extends AppCompatActivity {
     private final int REQUEST_ENABLE_BT = 1;
 
     //this character has to be sent first to start receiving a character
-    private final String READ_ENABLE_CHAR  = "A";
+    private final String READ_ENABLE_CHAR  = "*";
 
     //this character has to be sent at the end to stop receiving characters
-    private final String READ_DISABLE_CHAR = "B";
+    private final String READ_DISABLE_CHAR = "/";
 
     // MAC address of remote Bluetooth device
     // Replace this with the address of your own module
@@ -250,10 +250,14 @@ public class RemoteConfigureActivity extends AppCompatActivity {
         if (this.mCurrentButton != null){
             this.mCurrentButton.setEnabled(false);
         }
-        this.mRemoteKeys.add(new RemoteKey(mCurrentButton.getText().toString(), data));
-        Log.i(TAG, mCurrentButton.getText().toString() + " " + data);
-        Log.i(TAG, mCurrentButton.getText().toString());
-        Log.i(TAG, mRemoteKeys.get(0).getRemoteKeyValues());
-        hideProgressDialog();
+
+        if (this.mCurrentButton != null){
+            this.mRemoteKeys.add(new RemoteKey(mCurrentButton.getText().toString(), data));
+            Log.i(TAG, mCurrentButton.getText().toString() + " " + data);
+            Log.i(TAG, mCurrentButton.getText().toString());
+            Log.i(TAG, mRemoteKeys.get(0).getRemoteKeyValues());
+            hideProgressDialog();
+        }
+
     }
 }
